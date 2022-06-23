@@ -5,7 +5,7 @@ use image::{
     imageops::FilterType::Nearest, io::Reader as ImageReader, DynamicImage, GenericImageView,
 };
 type ArgMode = Mode;
-/// Simple program to greet a person
+/// Simple program to turn image into ascii
 #[derive(Parser)]
 #[clap(author, version, about, long_about = None)]
 struct Args {
@@ -58,9 +58,7 @@ fn parse_args(args: Args) -> (DynamicImage, Mode) {
     } else {
         1.0
     };
-    let width = image.width();
-    let height = image.height();
-    let aspect_ratio = (height as f32 / width as f32).ceil();
+    let aspect_ratio = (image.width() as f32 / image.height() as f32).ceil();
     let new_width = if let Some(w) = args.width { w } else { 60 };
     let new_height = aspect_ratio * new_width as f32 * scale;
     let image = image.resize(new_width, new_height as u32, Nearest);
