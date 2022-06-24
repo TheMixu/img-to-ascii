@@ -39,7 +39,7 @@ pub struct Options {
     /// Don't print the result
     pub silent: bool,
 
-    #[clap(long, action)]
+    #[clap(long)]
     /// Save to file
     pub save_to_file: Option<PathBuf>,
 }
